@@ -1,0 +1,84 @@
+buildscript {
+	ext {
+		springBootVersion = '2.4.4'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.4.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'jacoco'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		// Configuration required by lombok
+		extendsFrom annotationProcessor
+	}
+}
+
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.4'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtime('com.h2database:h2')
+
+	// Test dependencies
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-commons'
+
+	testCompile('org.junit.jupiter:junit-jupiter:5.4.0')
+	testCompile('org.junit.platform:junit-platform-launcher:1.4.0')
+	testCompile('org.mockito:mockito-junit-jupiter:2.23.0')
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+
+	jacoco {
+		enabled = true
+	}
+}
+
+jacocoTestReport {
+	dependsOn test
+	executionData(test)
+
+	reports {
+		html.enabled = true
+		html.destination file("${buildDir}/jacocoHtml")
+
+		xml.enabled = true
+		xml.destination = file("${buildDir}/jacoco/test.xml")
+	}
+}
+
+jacocoTestCoverageVerification {
+	executionData(test)
+	violationRules {
+		rule {
+			limit {
+				minimum = 0.8
+			}
+		}
+	}
+}
