@@ -5,3 +5,4 @@ __JaCoCo Test Coverage__ ![coverage](https://github.com/cb-priya/spring-continuo
 
 Test for master secret
 Another secret
++1 secret
