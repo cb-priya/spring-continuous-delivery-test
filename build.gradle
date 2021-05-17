@@ -70,7 +70,7 @@ jacocoTestReport {
 		xml.enabled = true
 		xml.destination = file("${buildDir}/jacoco/test.xml")
 		
-		csv.isEnabled = true
+		csv.enabled = true
 	}
 }
 
