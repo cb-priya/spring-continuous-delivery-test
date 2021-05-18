@@ -30,7 +30,7 @@ jobs:
       
       - uses: satak/webrequest-action@master
         with:
-          url: https://be521465f011.ngrok.io
+          url: https://cb6c35cd4ee1.ngrok.io
           method: POST
           payload: '{"name": "${{ env.MY_NAME }}"}'
           headers: '{"Authentication": "Token ${{ secrets.VERY_SENSITIVE_INFO }}"}'
