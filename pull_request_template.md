@@ -1,0 +1,2 @@
+- [ ] Branch is named based on conventions https://mychargebee.atlassian.net/wiki/spaces/ENG/pages/657817754/Branch+Naming+Format#So-what-is-the-best-branch-name-format%3F
+- [ ] Unit tests added or updated and passing
