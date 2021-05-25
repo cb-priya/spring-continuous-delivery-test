@@ -15,7 +15,8 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'jacoco'
-	id "org.sonarqube" version "3.1"
+	id 'checkstyle'
+	id 'com.github.spotbugs' version '4.7.0'
 }
 
 group = 'com.example'
@@ -40,15 +41,20 @@ dependencies {
 
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.4'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtime('com.h2database:h2')
+	implementation 'org.hibernate:hibernate-core:5.2.17.Final'
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+	implementation 'org.javassist:javassist:3.25.0-GA'
+	implementation 'mysql:mysql-connector-java:5.1.49'
 
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-commons'
 
-	testCompile('org.junit.jupiter:junit-jupiter:5.4.0')
-	testCompile('org.junit.platform:junit-platform-launcher:1.4.0')
-	testCompile('org.mockito:mockito-junit-jupiter:2.23.0')
+	testRuntimeOnly 'org.junit.platform:junit-platform-commons'
+	testRuntimeOnly 'com.h2database:h2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter:5.4.0'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.4.0'
+	testRuntimeOnly 'org.mockito:mockito-junit-jupiter:2.23.0'
 }
 
 test {
@@ -70,7 +76,7 @@ jacocoTestReport {
 
 		xml.enabled = true
 		xml.destination = file("${buildDir}/jacoco/test.xml")
-		
+
 		csv.enabled = true
 	}
 }
@@ -82,6 +88,55 @@ jacocoTestCoverageVerification {
 			limit {
 				minimum = 0.8
 			}
+		}
+	}
+}
+
+checkstyle {
+	toolVersion = '8.35'
+	ignoreFailures = false
+	maxWarnings = 0
+}
+
+spotbugs {
+	/**
+	 * https://github.com/spotbugs/spotbugs-gradle-plugin
+	 */
+	ignoreFailures = false
+	showStackTraces = true
+	showProgress = true
+	reportsDir = file("$buildDir/reports/spotbugs")
+	maxHeapSize = '1g'
+	onlyAnalyze = [ 'com.chargebee.-' ]
+
+	/**
+	 * https://spotbugs.readthedocs.io/en/stable/effort.html
+	 */
+	effort = 'default'
+
+	/**
+	 * Spobugs support ignoring / supressing specific checks if they produce false positive.
+	 * Create the file below to configure exclusion. Refer to documentation on format:
+	 * https://spotbugs.readthedocs.io/en/latest/filter.html
+	 */
+	excludeFilter = file("config/spotbugs/exclude.xml")
+}
+
+spotbugsMain {
+	reports {
+		html {
+			enabled = true
+		}
+	}
+}
+
+spotbugsTest {
+	ignoreFailures = true
+	showStackTraces = false
+
+	reports {
+		html {
+			enabled = true
 		}
 	}
 }

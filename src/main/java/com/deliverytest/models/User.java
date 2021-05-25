@@ -1,14 +1,21 @@
 package com.deliverytest.models;
 
-import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-import java.sql.Timestamp;
-
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
     private long registrationDate;
+
+    public User() {
+    }
 
     public User(Long id, String firstName, String lastName) {
         this.id = id;
