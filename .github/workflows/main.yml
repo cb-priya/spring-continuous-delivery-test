@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: '*'
-  pull_request:
-    branches: '*'
+    branches: 'main'
+    paths-ignore:
+      - '.github/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,11 +29,21 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Log coverage percentage
+        run: |
+          CODEARTIFACT_REPO=`aws codeartifact get-repository-endpoint --domain artifactory-poc --domain-owner 127322177288 --repository artifactory --format maven`
+          CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain artifactory-poc --domain-owner 127322177288 --query authorizationToken --output text`
+          
       - name: Run Tests
-        run: ./gradlew test
-
-      - name: Run Test Coverage
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew test jacocoTestReport publish
 
       - name: Generate JaCoCo Badge
         uses: cicirello/jacoco-badge-generator@v2
