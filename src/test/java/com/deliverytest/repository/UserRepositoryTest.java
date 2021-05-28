@@ -18,7 +18,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void givenStudent_whenSave_thenGetOk() {
+    public void givenUser_save_returnsUser() {
         User user = new User(1L, "john", "test");
         userRepository.save(user);
 

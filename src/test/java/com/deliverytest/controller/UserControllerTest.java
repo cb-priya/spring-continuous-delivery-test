@@ -19,8 +19,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,23 +40,23 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup(){
-        user = new User(1L,"john", "ten");
-        User bob = new User(1L,"bob", "twenty");
-        User alex = new User(1L,"alex", "thirty");
+    public void setup() {
+        user = new User(1L, "john", "ten");
+        User bob = new User(1L, "bob", "twenty");
+        User alex = new User(1L, "alex", "thirty");
 
         allUsers = Arrays.asList(user, bob, alex);
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
     @Test
-    public void addUser() throws Exception{
+    public void addUser() throws Exception {
         when(userService.registerUser(any())).thenReturn(user);
-        mockMvc.perform(post("/users")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(user)))
                 .andExpect(status().isOk());
-        verify(userService,times(1)).registerUser(any());
+        verify(userService, times(1)).registerUser(any());
     }
 
     @Test
@@ -63,9 +64,9 @@ public class UserControllerTest {
         when(userService.findAll()).thenReturn(allUsers);
         mockMvc.perform(MockMvcRequestBuilders.get("/users")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(user)))
+                .content(asJsonString("{}")))
                 .andExpect(content().string(asJsonString(allUsers)));
-        verify(userService,times(1)).findAll();
+        verify(userService, times(1)).findAll();
     }
 
     @AfterEach
@@ -73,10 +74,10 @@ public class UserControllerTest {
         user = null;
     }
 
-    private static String asJsonString(final Object obj){
-        try{
+    private static String asJsonString(final Object obj) {
+        try {
             return new ObjectMapper().writeValueAsString(obj);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

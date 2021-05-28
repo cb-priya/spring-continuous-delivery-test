@@ -31,9 +31,9 @@ class UserServiceTest {
 
     @BeforeEach
     public void setUp() {
-        User john = new User(1L,"john", "ten");
-        User bob = new User(1L,"bob", "twenty");
-        User alex = new User(1L,"alex", "thirty");
+        User john = new User(1L, "john", "ten");
+        User bob = new User(1L, "bob", "twenty");
+        User alex = new User(1L, "alex", "thirty");
 
         List<User> allUsers = Arrays.asList(john, bob, alex);
 
