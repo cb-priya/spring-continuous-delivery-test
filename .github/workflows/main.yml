@@ -51,9 +51,7 @@ jobs:
           export CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain artifactory-poc --domain-owner 127322177288 --query authorizationToken --output text`
           echo "coverage = $CODEARTIFACT_REPO"
           echo "coverage = $CODEARTIFACT_TOKEN"
-          
-      - name: Run Tests
-        run: ./gradlew test jacocoTestReport publish
+          ./gradlew test jacocoTestReport publish
 
       - name: Generate JaCoCo Badge
         uses: cicirello/jacoco-badge-generator@v2
