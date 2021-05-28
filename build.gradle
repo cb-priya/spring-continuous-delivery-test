@@ -144,11 +144,8 @@ spotbugsTest {
 
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
-			groupId = 'com.priya'
-			artifactId = 'spring-continuous-delivery-test'
-			version = '0.0.1'
-			from components.java
+		bootJava(MavenPublication) {
+			artifact bootJar
 		}
 	}
 
