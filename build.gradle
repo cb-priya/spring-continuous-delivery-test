@@ -142,6 +142,9 @@ spotbugsTest {
 	}
 }
 
+println System.getenv('CODEARTIFACT_REPO')
+println System.getenv('CODEARTIFACT_TOKEN')
+
 publishing {
 	publications {
 		bootJava(MavenPublication) {
