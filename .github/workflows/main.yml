@@ -29,6 +29,14 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle
           
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
@@ -41,6 +49,8 @@ jobs:
         run: |
           CODEARTIFACT_REPO=`aws codeartifact get-repository-endpoint --domain artifactory-poc --domain-owner 127322177288 --repository artifactory --format maven --output text`
           CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain artifactory-poc --domain-owner 127322177288 --query authorizationToken --output text`
+          echo "coverage = $CODEARTIFACT_REPO"
+          echo "coverage = $CODEARTIFACT_TOKEN"
           
       - name: Run Tests
         run: ./gradlew test jacocoTestReport publish
