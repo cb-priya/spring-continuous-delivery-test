@@ -17,9 +17,10 @@ plugins {
 	id 'jacoco'
 	id 'checkstyle'
 	id 'com.github.spotbugs' version '4.7.0'
+	id 'maven-publish'
 }
 
-group = 'com.example'
+group = 'com.priya'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -140,3 +141,25 @@ spotbugsTest {
 		}
 	}
 }
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId = 'com.priya'
+			artifactId = 'spring-continuous-delivery-test'
+			version = '0.0.1'
+			from components.java
+		}
+	}
+
+	repositories {
+		maven {
+			url System.env.CODEARTIFACT_REPO
+			credentials {
+				username "aws"
+				password System.env.CODEARTIFACT_AUTH_TOKEN
+			}
+		}
+	}
+}
+
