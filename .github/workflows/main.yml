@@ -47,8 +47,8 @@ jobs:
       
       - name: Log coverage percentage
         run: |
-          CODEARTIFACT_REPO=`aws codeartifact get-repository-endpoint --domain artifactory-poc --domain-owner 127322177288 --repository artifactory --format maven --output text`
-          CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain artifactory-poc --domain-owner 127322177288 --query authorizationToken --output text`
+          export CODEARTIFACT_REPO=`aws codeartifact get-repository-endpoint --domain artifactory-poc --domain-owner 127322177288 --repository artifactory --format maven --output text`
+          export CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain artifactory-poc --domain-owner 127322177288 --query authorizationToken --output text`
           echo "coverage = $CODEARTIFACT_REPO"
           echo "coverage = $CODEARTIFACT_TOKEN"
           
