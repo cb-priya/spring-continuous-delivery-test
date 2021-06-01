@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: [self-hosted]
+    runs-on: ${{ secrets.RUNNER }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,12 +38,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle
           
-      - name: Configure AWS credentials from Test account
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+      #- name: Configure AWS credentials from Test account
+      #  uses: aws-actions/configure-aws-credentials@v1
+      #  with:
+      #    aws-access-key-id: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+      #    aws-secret-access-key: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+      #    aws-region: us-east-1
       
       - name: Log coverage percentage
         run: |
