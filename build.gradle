@@ -46,7 +46,7 @@ dependencies {
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 
 	implementation 'org.javassist:javassist:3.25.0-GA'
-	implementation 'mysql:mysql-connector-java:5.1.49'
+	implementation 'mysql:mysql-connector-java:8.0.25'
 
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
