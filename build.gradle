@@ -18,6 +18,7 @@ plugins {
 	id 'checkstyle'
 	id 'com.github.spotbugs' version '4.7.0'
 	id 'maven-publish'
+	id "org.sonarqube" version "3.1"
 }
 
 group = 'com.priya'
