@@ -56,7 +56,7 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(user)))
                 .andExpect(status().isOk());
-        verify(userService, times(1)).registerUser(any());
+        verify(userService, times(2)).registerUser(any());
     }
 
     @Test
