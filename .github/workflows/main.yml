@@ -47,16 +47,12 @@ jobs:
           aws-region: us-east-1
       
       - name: Build
-          run: |
-#          export CODEARTIFACT_REPO=`aws codeartifact get-repository-endpoint --domain artifactory-poc --domain-owner 127322177288 --repository artifactory --format maven --output text`
-#          export CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain artifactory-poc --domain-owner 127322177288 --query authorizationToken --output text`
-#          echo "coverage = $CODEARTIFACT_REPO"
-#          echo "coverage = $CODEARTIFACT_TOKEN"
-          #./gradlew test jacocoTestReport publish
+        run: |
           ./gradlew clean build
+          
       - name: Login to Amazon ECR
-          id: login-ecr
-          uses: aws-actions/amazon-ecr-login@v1
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build, tag, and push image to Amazon ECR
         env:
