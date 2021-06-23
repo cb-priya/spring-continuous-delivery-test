@@ -17,3 +17,5 @@ create table user(
     lastName varchar(500) NOT null,
     registrationDate varchar(1000)
 );
+
+Test commit
