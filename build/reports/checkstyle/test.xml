@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.35">
+<file name="/github/workspace/spring-continuous-delivery-test/src/test/java/com/deliverytest/controller/UserControllerTest.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/test/java/com/deliverytest/repository/UserRepositoryTest.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/test/java/com/deliverytest/service/UserServiceTest.java">
+</file>
+</checkstyle>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.35">
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/AppConfig.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/SpringContinuousDeliveryTestApplication.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/controller/RolesController.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/controller/UserController.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/models/User.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/repository/UserRepository.java">
+</file>
+<file name="/github/workspace/spring-continuous-delivery-test/src/main/java/com/deliverytest/service/UserService.java">
+</file>
+</checkstyle>
