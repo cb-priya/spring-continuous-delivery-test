@@ -16,7 +16,7 @@ plugins {
 	id 'java'
 	id 'jacoco'
 	id 'checkstyle'
-	id 'com.github.spotbugs' version '4.7.0'
+	id 'com.github.spotbugs' version '4.7.2'
 	id 'maven-publish'
 	id "org.sonarqube" version "3.2.0"
 }
