@@ -55,7 +55,7 @@ dependencies {
 
 	implementation 'org.javassist:javassist:3.25.0-GA'
 	implementation 'javax.interceptor:javax.interceptor-api:1.2.2'
-	implementation 'mysql:mysql-connector-java:5.1.49'
+	implementation 'mysql:mysql-connector-java:8.0.26'
 
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
