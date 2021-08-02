@@ -22,9 +22,4 @@ public class UserController {
     public @ResponseBody List<User> getUsers() {
         return userService.findAll();
     }
-
-    @PostMapping
-    public @ResponseBody User addUser(@RequestBody User user) {
-        return userService.registerUser(user);
-    }
 }

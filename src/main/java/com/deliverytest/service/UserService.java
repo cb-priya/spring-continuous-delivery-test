@@ -12,20 +12,10 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public User registerUser(final User user) {
-        user.setRegistrationDate(System.currentTimeMillis());
-        return userRepository.save(user);
-    }
-
-    public Optional<User> findById(final Long id) {
-        return userRepository.findById(id);
-    }
+    private UserRepository userRepository = new UserRepository();
 
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.getUsers();
     }
 
 }
