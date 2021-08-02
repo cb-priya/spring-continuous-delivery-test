@@ -13,6 +13,7 @@ public class UserRepository {
     public UserRepository() {
         this.users.add(new User(1L, "John","Doe"));
         this.users.add(new User(2L, "Jane", "Doe"));
+        this.users.add(new User(3L, "Jack", "Dawson"))
     }
 
     public List<User> getUsers() {
