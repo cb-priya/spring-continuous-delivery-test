@@ -64,7 +64,7 @@ dependencies {
 	testRuntimeOnly 'com.h2database:h2'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter:5.4.0'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.4.0'
-	testRuntimeOnly 'org.mockito:mockito-junit-jupiter:2.23.0'
+	testRuntimeOnly 'org.mockito:mockito-junit-jupiter:3.12.1'
 }
 
 test {
